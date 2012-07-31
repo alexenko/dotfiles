@@ -1,0 +1,242 @@
+#!/usr/bin/env python
+#
+# Copyright 2007 Google Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+import webapp2
+import os
+import jinja2
+import re
+import cgi
+import hashlib
+import random,string
+import json
+import logging
+import time
+import passlib
+
+from google.appengine.api import memcache
+from google.appengine.ext import db
+
+files = {'newpost': 'newpost.html', 'blog': 'blog.html', 'post': 'post.html', 'signup': 'signup.html', 
+        'welcome': 'welcome.html', 'login': 'login.html'}
+
+template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape = True)
+post = open(os.path.join(template_dir, files['post']), 'r').read()
+update = False
+
+def make_salt():
+    return ''.join(random.choice(string.letters) for x in xrange(5))
+
+def make_pw_hash(name, pw, salt=None):
+    if not salt:
+        salt=make_salt()
+    h = hashlib.sha256(name + pw + salt).hexdigest()
+    return '%s|%s' % (h, salt)
+
+def valid_pw(name, pw, h):
+    salt = h.split('|')[1]
+    return h == make_pw_hash(name, pw, salt)
+
+def hash_str(s):
+    return hashlib.md5(s).hexdigest()
+
+def make_secure_user(s):
+    return "%s|%s" % (s, hash_str(s))
+
+def check_secure_user(h):
+    val = h.split('|')[0]
+    if h == make_secure_user(val):
+        return val
+
+USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
+def valid_username(username):
+    return USER_RE.match(username)
+
+PASS_RE = re.compile(r"^.{3,20}$")
+def valid_password(password):
+    return PASS_RE.match(password)
+
+EMAIL_RE = re.compile(r"^[\S]+@[\S]+\.[\S]+$")
+def valid_email(email):
+    return EMAIL_RE.match(email)
+
+def render_str(template, **params):
+    t = jinja_env.get_template(template)
+    return t.render(params)
+
+def escape_html(s):
+    return cgi.escape(s, quote = True)
+
+class Wiki(webapp2.RequestHandler):
+    def write(self, *a, **kw):
+        self.response.out.write(*a, **kw)
+
+    def render_str(self, template, **params):
+        return render_str(template, **params)
+
+    def render(self, template, **kw):
+        self.write(self.render_str(template, **kw))
+
+class MainHandler(Wiki):
+    def get(self):
+        key = "mainpage"
+        posts = memcache.get(key)
+        if posts is None or update:
+            logging.error("DB QUERY")
+            posts = db.GqlQuery("SELECT * FROM WikiEntry ORDER BY created DESC LIMIT 10")
+            memcache.set(key, posts)
+            memcache.set("cacheAge",time.time())
+
+        cacheAge = "%0.2f" %(time.time()-memcache.get("cacheAge"))
+        #posts = BlogPost.gql("ORDER BY created DESC LIMIT 10").get()
+        self.render(files['blog'], posts = posts, cacheAge = cacheAge)
+
+
+class WikiEntry(db.Model):
+    subject = db.StringProperty(required = True)
+    content = db.TextProperty(required = True)
+    created = db.DateTimeProperty(auto_now_add = True)
+
+    def render(self):
+        self._rendeR_text = self.content.replace('\n', '<br>')
+        return render_str(files['newpost'], p = self)
+
+class User(db.Model):
+    username = db.StringProperty(required = True)
+    password = db.TextProperty(required = True)
+    email = db.DateTimeProperty(required = False)
+
+class SignupHandler(Wiki):
+    def get(self):
+        self.render(files['signup'])
+
+    def post(self):
+        in_username = self.request.get('username')
+        in_password = self.request.get('password')
+        in_verify = self.request.get('verify')
+        in_email = self.request.get('email')
+        error_email =  error_username = error_password = error_verify = ''
+
+        if valid_username(in_username):
+            username_exists = db.GqlQuery("SELECT * FROM User WHERE username = :1", in_username).get()
+            #username_exists = User.gql("WHERE username = :1", in_username)
+            if username_exists:
+                error_username = "Username exists!"
+                
+                username = 0
+            else:
+                username = in_username
+
+        # if valid_username(in_username):
+        #     username = in_username
+        else: 
+            error_username = "That's not a valid username."
+            username = 0
+
+        if valid_password(in_password):
+            password = in_password
+        else:
+            error_password = "That's not a valid password."
+            password = 0
+
+        if in_password == in_verify:
+            verify = in_verify
+        else:
+            error_verify = "Your passwords didn't match."
+            verify = 0
+
+        if in_email:
+            if valid_email(in_email):
+                email = in_email
+            else:
+                error_email = "That's not a valid email address."
+                email = 0
+        else:
+            email = 1
+
+        if not (username and password and verify and email):
+            self.render(files['signup'], username = in_username, error_username = error_username, 
+                error_password = error_password, error_verify = error_verify, email = in_email, 
+                error_email = error_email)
+        else:
+            user = User(username = escape_html(in_username), password = bcrypt.hashpw(in_password, bcrypt.gensalt()), 
+                email = in_email)
+ 
+            user.put()
+
+            new_cookie_user = make_secure_user(str(in_username))
+            self.response.headers.add_header('Set-Cookie', 'username=%s' % new_cookie_user)
+
+            self.redirect("/welcome")
+
+class WelcomeHandler(Wiki):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/plain'
+        username_cookie_str = self.request.cookies.get('username')
+        
+        if username_cookie_str:
+            username = check_secure_user(username_cookie_str)
+            if username:
+                self.render(files['welcome'], username = username)
+            else:
+                self.redirect("/signup")
+        else:
+            self.redirect("/signup")       
+
+class LoginHandler(Wiki):
+    def get(self):
+        self.render(files['login'])
+
+    def invalid_password(self):
+        self.render(files['login'], error = "Invalid login")
+
+    def post(self):
+        in_username = self.request.get('username')
+        in_password = self.request.get('password')
+
+        error_username = error_password = ""
+
+        hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+
+        print "It matches"
+
+        if valid_username(in_username) and valid_password(in_password):
+
+            password_hash = db.GqlQuery("SELECT * FROM User WHERE username = :1", in_username).get().password
+            
+            if bcrypt.hashpw(in_password, password_hash) == password_hash:
+                new_cookie_user = make_secure_user(str(in_username))
+                self.response.headers.add_header('Set-Cookie', 'username=%s' % new_cookie_user)
+
+                self.redirect("/welcome")
+            else:
+                self.invalid_password()
+
+        
+        else: 
+            self.invalid_password()
+
+class LogoutHandler(Wiki):
+    def get(self):
+        self.response.headers.add_header('Set-Cookie', 'username=;Path=/')
+        self.redirect("/")
+
+app = webapp2.WSGIApplication([	('/', MainHandler),
+								('/signup', SignupHandler),
+                                ('/welcome', WelcomeHandler),
+                                ('/login', LoginHandler),
+                                ('/logout', LogoutHandler)],
+                              debug=True)

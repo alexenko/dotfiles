@@ -6,6 +6,17 @@ set sw=4
 " all the figure labels. Very useful!
 set iskeyword+=:
 
+"Set the textwidth of each line to 100
+set textwidth=100
+
+"Force vsplit to open on the right, not left
+set splitright
+
+"Enable spellcheck
+"set spell
+
 let g:Tex_CompileRule_pdf = 'latexmk -pdf $*'
 let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_ViewRule_pdf = 'xpdf'
+let g:Tex_ViewRule_pdf = 'evince'
+let g:Tex_GotoError = 1
+nnoremap \z (j>>gq)
