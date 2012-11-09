@@ -30,6 +30,7 @@ export EDITOR='vim'
 export PATH="$HOME/bin:${PATH}"
 export PATH="$HOME/lib/dotfiles/bin:${PATH}"
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:$PATH"
+export PATH="/opt/python/bin:$PATH"
 #export PATH="/opt/subversion/bin:${PATH}"
 #export PATH="/usr/local/Cellar/ruby/1.9.2-p290/bin:${PATH}"
 #export PATH="/usr/local/Cellar/ruby/1.9.3-p125/bin:${PATH}"
@@ -77,7 +78,8 @@ if [[ -s $HOME/.zshrc_local ]] ; then source $HOME/.zshrc_local ; fi
 
 # GRC
 #source "`brew --prefix grc`/etc/grc.bashrc"
-#
+
+# activate virtualenv wrapper
 if [[ -s $HOME/lib/dotfiles/zsh/virtualenv.zsh ]] ; then 
 	source $HOME/lib/dotfiles/zsh/virtualenv.zsh ;
 fi
