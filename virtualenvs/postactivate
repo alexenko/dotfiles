@@ -1,0 +1,13 @@
+#!/usr/bin/zsh
+# This hook is run after every virtualenv is activated.
+
+PROJECT_DIR="${WORKON_HOME}/$(basename $VIRTUAL_ENV)"
+if [ -d $PROJECT_DIR ]; then
+    # If we aren’t already within the project dir, cd into it
+    if [[ ! `pwd` == "$PROJECT_DIR*" ]]; then
+        export PRE_VENV_ACTIVATE_DIR=`pwd`
+        cd "$PROJECT_DIR"
+    fi
+fi
+unset PROJECT_DIR
+

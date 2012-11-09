@@ -1,0 +1,39 @@
+#!/usr/bin/zsh
+# This hook is run after a new virtualenv is created and before it is activated.
+
+
+source ~/lib/dotfiles/zsh/virtualenv.zsh
+
+if [ -d $VIRTUALENV_PROJECT_GIT_ROOT ]; then
+
+    if [ -d ${VIRTUALENV_PROJECT_GIT_ROOT}/${1}.git ]; then
+        echo "Git root already created"
+    else
+        echo "Creating git root"
+        cd $VIRTUALENV_PROJECT_GIT_ROOT
+        git init --bare ${1}.git
+    fi
+
+    cd ${WORKON_HOME}/${1}
+    git init
+    git remote add origin file://${VIRTUALENV_PROJECT_GIT_ROOT}/${1}.git
+    git config branch.master.remote origin
+    git config branch.master.merge refs/heads/master
+    git pull
+
+    if [ -f .gitignore ]; then
+        echo ".gitignore already exists, skipping"
+    else
+        echo "bin/*
+include/*
+share/*
+lib/*
+man/*
+.Python
+.*.swp
+*.py[co]" > .gitignore
+        git add .gitignore
+        git commit .gitignore -m "init"
+        git push origin master
+    fi
+fi

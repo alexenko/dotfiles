@@ -1,0 +1,11 @@
+#!/usr/bin/zsh
+# This hook is run after a new virtualenv is activated.
+
+if [ -f requirements.txt ]; then
+    echo "requirements.txt already exists, skipping"
+else
+    pip freeze > requirements.txt
+    git add requirements.txt
+    git commit requirements.txt -m "adding basic pip reqs file"
+    git push origin master
+fi
