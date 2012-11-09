@@ -77,3 +77,7 @@ if [[ -s $HOME/.zshrc_local ]] ; then source $HOME/.zshrc_local ; fi
 
 # GRC
 #source "`brew --prefix grc`/etc/grc.bashrc"
+#
+if [[ -s $HOME/lib/dotfiles/zsh/virtualenv.zsh ]] ; then 
+	source $HOME/lib/dotfiles/zsh/virtualenv.zsh ;
+fi
