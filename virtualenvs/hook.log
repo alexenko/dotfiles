@@ -1,23 +1,24 @@
-2012-11-03 12:05:02,255 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-1Bx3FTT4eF
-2012-11-03 12:51:33,544 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-03 12:51:33,550 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-7DAImeuc9p
-2012-11-03 13:38:47,762 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-03 13:38:47,769 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-MrprgbmhMg
-2012-11-03 13:43:32,523 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-03 13:43:32,530 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-aLdEVawGz7
-2012-11-03 15:36:17,510 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-03 15:36:17,517 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-441YWignaI
-2012-11-03 15:55:24,222 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-03 15:55:24,228 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-LwJJYJjhWu
-2012-11-03 16:01:54,968 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-03 16:01:54,975 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-ZLvBfy8iEN
-2012-11-05 07:32:02,535 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-05 07:32:02,728 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-hwNIs8I3A2
-2012-11-05 07:32:32,251 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-05 07:32:32,258 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-0x0K5ZfsIy
-2012-11-05 08:20:16,726 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-05 08:20:17,130 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-Pn17DbTVQd
-2012-11-07 08:11:22,061 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-07 08:11:22,288 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-ECUUPVVbZx
-2012-11-09 10:34:51,465 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
-2012-11-09 10:34:51,660 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-GKQgQYhUZH
+2013-06-02 13:49:32,533 DEBUG virtualenvwrapper.user_scripts pre_activate
+2013-06-02 13:49:32,533 DEBUG virtualenvwrapper.user_scripts running ['/home/alexenko/lib/virtualenvs/preactivate', 'coursly.com_django']
+2013-06-02 13:49:32,552 DEBUG virtualenvwrapper.user_scripts running ['/home/alexenko/Code/coursly.com_django/bin/preactivate', 'coursly.com_django']
+2013-06-02 13:49:32,572 DEBUG virtualenvwrapper.hook_loader Saving sourcable pre_activate hooks to /tmp/virtualenvwrapper-pre_activate-hook-MRLfllmbM1
+2013-06-02 13:49:32,684 DEBUG virtualenvwrapper.hook_loader Running post_activate hooks
+2013-06-02 13:49:32,687 DEBUG virtualenvwrapper.hook_loader Saving sourcable post_activate hooks to /tmp/virtualenvwrapper-post_activate-hook-aA9iYTwwyn
+2013-06-02 13:49:32,687 DEBUG stevedore.extension found extension EntryPoint.parse('user_scripts = virtualenvwrapper.user_scripts:post_activate_source')
+2013-06-02 13:49:32,689 DEBUG stevedore.extension found extension EntryPoint.parse('project = virtualenvwrapper.project:post_activate_source')
+2013-06-02 13:49:32,690 DEBUG virtualenvwrapper.user_scripts post_activate
+2013-06-03 12:28:47,794 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
+2013-06-03 12:28:47,897 DEBUG stevedore.extension found extension EntryPoint.parse('user_scripts = virtualenvwrapper.user_scripts:initialize')
+2013-06-03 12:28:48,045 DEBUG stevedore.extension found extension EntryPoint.parse('project = virtualenvwrapper.project:initialize')
+2013-06-03 12:28:48,064 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-tBJE8uuI41
+2013-06-03 12:28:48,064 DEBUG stevedore.extension found extension EntryPoint.parse('user_scripts = virtualenvwrapper.user_scripts:initialize_source')
+2013-06-03 12:29:54,363 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
+2013-06-03 12:29:54,368 DEBUG stevedore.extension found extension EntryPoint.parse('user_scripts = virtualenvwrapper.user_scripts:initialize')
+2013-06-03 12:29:54,375 DEBUG stevedore.extension found extension EntryPoint.parse('project = virtualenvwrapper.project:initialize')
+2013-06-03 12:29:54,375 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-kw2KmsKR93
+2013-06-03 12:29:54,375 DEBUG stevedore.extension found extension EntryPoint.parse('user_scripts = virtualenvwrapper.user_scripts:initialize_source')
+2013-06-03 12:52:00,025 DEBUG virtualenvwrapper.hook_loader Running initialize hooks
+2013-06-03 12:52:00,028 DEBUG stevedore.extension found extension EntryPoint.parse('user_scripts = virtualenvwrapper.user_scripts:initialize')
+2013-06-03 12:52:00,031 DEBUG stevedore.extension found extension EntryPoint.parse('project = virtualenvwrapper.project:initialize')
+2013-06-03 12:52:00,032 DEBUG virtualenvwrapper.hook_loader Saving sourcable initialize hooks to /tmp/virtualenvwrapper-initialize-hook-oehGD0xFvz
+2013-06-03 12:52:00,032 DEBUG stevedore.extension found extension EntryPoint.parse('user_scripts = virtualenvwrapper.user_scripts:initialize_source')

@@ -14,6 +14,8 @@ unsetopt promptcr
 
 # Useful aliases -------------------------------------------------------------
 alias vz='vim ~/.zshrc'
+alias pm='python manage.py'
+alias gap='git add --patch'
 #alias j='z'
 #alias fab='fab -i ~/.ssh/stevelosh'
 #alias oldgcc='export CC=/usr/bin/gcc-4.0'
@@ -41,6 +43,11 @@ export HISTCONTROL=erasedups
 export COMMAND_MODE=unix2003
 #export RUBYOPT=rubygems
 #export CLASSPATH="$CLASSPATH:/usr/local/Cellar/clojure-contrib/1.2.0/clojure-contrib.jar"
+
+# Oracle JDK
+export JAVA_HOME="/opt/java/64/jre1.7.0_21/"
+export JDK_HOME=$JAVA_HOME
+export PATH="$PATH:/opt/java/64/jre1.7.0_21/bin"
 
 # Python variables -----------------------------------------------------------
 #export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
@@ -83,3 +90,6 @@ if [[ -s $HOME/.zshrc_local ]] ; then source $HOME/.zshrc_local ; fi
 if [[ -s $HOME/lib/dotfiles/zsh/virtualenv.zsh ]] ; then 
 	source $HOME/lib/dotfiles/zsh/virtualenv.zsh ;
 fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
