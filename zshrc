@@ -7,7 +7,7 @@ plugins=(git command-coloring pip fabric lein redis-cli vagrant)
 #test -f "$HOME/src/hgd/hd" && export OH_MY_ZSH_HG="$HOME/src/hgd/hd" || export OH_MY_ZSH_HG='hg'
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/lib/dotfiles/z/z.sh
+#source $HOME/lib/dotfiles/z/z.sh
 
 # Custom options -------------------------------------------------------------
 unsetopt promptcr
@@ -32,7 +32,7 @@ export EDITOR='vim'
 export PATH="$HOME/bin:${PATH}"
 export PATH="$HOME/lib/dotfiles/bin:${PATH}"
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:$PATH"
-export PATH="/opt/python/bin:$PATH"
+export PATH="/opt/python/current/bin:$PATH"
 #export PATH="/opt/subversion/bin:${PATH}"
 #export PATH="/usr/local/Cellar/ruby/1.9.2-p290/bin:${PATH}"
 #export PATH="/usr/local/Cellar/ruby/1.9.3-p125/bin:${PATH}"
@@ -73,9 +73,9 @@ export PATH="$PATH:/opt/java/64/jre1.7.0_21/bin"
 #source `brew --prefix`/etc/profile.d/z.sh
 
 # Pre-Prompt Command ---------------------------------------------------------
-function precmd () {
-    _z --add "$(pwd -P)"
-}
+#function precmd () {
+#    _z --add "$(pwd -P)"
+#}
 
 # Local Settings -------------------------------------------------------------
 if [[ -s $HOME/.zshrc_local ]] ; then source $HOME/.zshrc_local ; fi
@@ -92,4 +92,4 @@ if [[ -s $HOME/lib/dotfiles/zsh/virtualenv.zsh ]] ; then
 fi
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+#export PATH="/usr/local/heroku/bin:$PATH"
