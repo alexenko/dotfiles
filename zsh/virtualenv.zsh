@@ -1,5 +1,5 @@
 # Virtualenv and virtualenvwrapper setup
-if [[ -f /opt/python/bin/virtualenvwrapper.sh ]]; then
+if [[ -f /opt/python/current/bin/virtualenvwrapper.sh ]]; then
 #    export PROJECT_HOME=~/lib/virtualenvs
     export WORKON_HOME=${HOME}/Code
     export VIRTUALENVWRAPPER_HOOK_DIR=${HOME}/lib/virtualenvs
@@ -8,9 +8,9 @@ if [[ -f /opt/python/bin/virtualenvwrapper.sh ]]; then
     export PIP_RESPECT_VIRTUALENV=true
     export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
     export VIRTUALENV_PROJECT_GIT_ROOT=${HOME}/Code/repos
-	export VIRTUALENVWRAPPER_PYTHON="/opt/python/bin/python2.7"
+	export VIRTUALENVWRAPPER_PYTHON="/opt/python/current/bin/python2.7"
 	export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages --distribute'
-    source /opt/python/bin/virtualenvwrapper.sh
+    source /opt/python/current/bin/virtualenvwrapper.sh
 fi
 
 
