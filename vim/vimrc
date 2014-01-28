@@ -32,9 +32,10 @@ set nocompatible
 
 " Indentation options
 set autoindent
-set smartindent
+"set smartindent
 set tabstop=4
 set shiftwidth=4
+set expandtab
 
 " Jump cursor when you type matching close brackets
 set showmatch

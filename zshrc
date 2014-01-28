@@ -15,6 +15,9 @@ unsetopt promptcr
 # Useful aliases -------------------------------------------------------------
 alias vz='vim ~/.zshrc'
 alias pm='python manage.py'
+alias pmt='python manage.py test --settings=coursly.settings.test'
+pmc() {coverage run --branch --source="." manage.py test "$*" --settings=coursly.settings.test; coverage html --omit="*migrations*"}
+django_reset () { python manage.py sqlreset "$*" | sed 's/DROP TABLE \(.*\);/DROP TABLE \1 CASCADE;/g' | python manage.py dbshell ; }
 alias gap='git add --patch'
 #alias j='z'
 #alias fab='fab -i ~/.ssh/stevelosh'
