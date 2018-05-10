@@ -29,12 +29,13 @@ export PATH="$HOME/bin:${PATH}"
 export PATH="$HOME/lib/dotfiles/bin:${PATH}"
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:$PATH"
 export PATH="/opt/python/current/bin:$PATH"
+export PATH="${HOME}/.local/bin:${PATH}"
 export GREP_OPTIONS='--color=auto'
 export HISTSIZE=1000
 export HISTFILESIZE=1000
 export HISTCONTROL=erasedups
 export COMMAND_MODE=unix2003
-export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin/:${PATH}"
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:${PATH}"
 #export RUBYOPT=rubygems
 #export CLASSPATH="$CLASSPATH:/usr/local/Cellar/clojure-contrib/1.2.0/clojure-contrib.jar"
 
@@ -42,9 +43,9 @@ export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin/:${PATH}"
 if [[ -s $HOME/.zshrc_local ]] ; then source $HOME/.zshrc_local ; fi
 
 # activate virtualenv wrapper
-if [[ -s $HOME/lib/dotfiles/zsh/virtualenv.zsh ]] ; then 
-	source $HOME/lib/dotfiles/zsh/virtualenv.zsh ;
-fi
+#if [[ -s $HOME/lib/dotfiles/zsh/virtualenv.zsh ]] ; then 
+#	source $HOME/lib/dotfiles/zsh/virtualenv.zsh ;
+#fi
 
 # Keyboard shortcuts
 bindkey -e
