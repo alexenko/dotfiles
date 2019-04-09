@@ -1,16 +1,7 @@
 # Virtualenv and virtualenvwrapper setup
-if [[ -f /opt/python/current/bin/virtualenvwrapper.sh ]]; then
-#    export PROJECT_HOME=~/lib/virtualenvs
-    export WORKON_HOME=${HOME}/Code
-    export VIRTUALENVWRAPPER_HOOK_DIR=${HOME}/lib/virtualenvs
-    export VIRTUALENVWRAPPER_LOG_DIR=${HOME}/lib/virtualenvs
-    export PIP_VIRTUALENV_BASE=$WORKON_HOME
-    export PIP_RESPECT_VIRTUALENV=true
-    export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
-    export VIRTUALENV_PROJECT_GIT_ROOT=${HOME}/Code/repos
-	export VIRTUALENVWRAPPER_PYTHON="/opt/python/current/bin/python2.7"
-	export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages --distribute'
-    source /opt/python/current/bin/virtualenvwrapper.sh
-fi
-
-
+export PROJECT_HOME=${HOME}/code
+export WORKON_HOME=${HOME}/.virtualenvs
+export VIRTUALENVWRAPPER_HOOK_DIR=${HOME}/lib/dotfiles/virtualenvwrapper
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYENV="true"
+pyenv virtualenvwrapper
+ 
