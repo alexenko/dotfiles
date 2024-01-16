@@ -1,75 +1,82 @@
-[colors.primary]
-background = "#24273A"
-foreground = "#CAD3F5"
-dim_foreground = "#CAD3F5"
-bright_foreground = "#CAD3F5"
+# vi: ft=yaml
+#
+import = [
+	"~/lib/dotfiles/alacritty/catppuccin.yml",
+]
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1.0"
 
 [colors.cursor]
-text = "#24273A"
-cursor = "#F4DBD6"
+cursor = "#eeeeee"
 
-[colors.vi_mode_cursor]
-text = "#24273A"
-cursor = "#B7BDF8"
+[colors.primary]
+background = "#222222"
 
-[colors.search.matches]
-foreground = "#24273A"
-background = "#A5ADCB"
+[window]
+opacity = 0.97
+dynamic_title = true
+dynamic_padding = true
+decorations = "none"
 
-[colors.search.focused_match]
-foreground = "#24273A"
-background = "#A6DA95"
+  [window.padding]
+  x = 5
+  y = 5
 
-[colors.footer_bar]
-foreground = "#24273A"
-background = "#A5ADCB"
+  [window.dimensions]
+  columns = 120
+  lines = 30
 
-[colors.hints.start]
-foreground = "#24273A"
-background = "#EED49F"
+[scrolling]
+history = 10_000
+multiplier = 3
 
-[colors.hints.end]
-foreground = "#24273A"
-background = "#A5ADCB"
+[bell]
+duration = 100
+color = "#22212C"
 
-[colors.selection]
-text = "#24273A"
-background = "#F4DBD6"
+  # [bell.command]
+  # program = "afplay"
+  # args = [ "/System/Library/Sounds/Tink.aiff" ]
 
-[colors.normal]
-black = "#494D64"
-red = "#ED8796"
-green = "#A6DA95"
-yellow = "#EED49F"
-blue = "#8AADF4"
-magenta = "#F5BDE6"
-cyan = "#8BD5CA"
-white = "#B8C0E0"
+[font]
+size = 12
 
-[colors.bright]
-black = "#5B6078"
-red = "#ED8796"
-green = "#A6DA95"
-yellow = "#EED49F"
-blue = "#8AADF4"
-magenta = "#F5BDE6"
-cyan = "#8BD5CA"
-white = "#A5ADCB"
+  [font.normal]
+  family = "MesloLGS NF"
 
-[colors.dim]
-black = "#494D64"
-red = "#ED8796"
-green = "#A6DA95"
-yellow = "#EED49F"
-blue = "#8AADF4"
-magenta = "#F5BDE6"
-cyan = "#8BD5CA"
-white = "#B8C0E0"
+  [font.bold]
+  family = "MesloLGS NF"
 
-[[colors.indexed_colors]]
-index = 16
-color = "#F5A97F"
+  [font.italic]
+  family = "MesloLGS NF"
 
-[[colors.indexed_colors]]
-index = 17
-color = "#F4DBD6"
+  [font.bold_italic]
+  family = "MesloLGS NF"
+
+[cursor.style]
+shape = "Beam"
+blinking = "On"
+
+# key_bindings:
+#   - { key: N,        mods: Command, action: CreateNewWindow }
+#   - { key: E,        mods: Alt,     chars: "\x1be"          }
+#   - { key: Y,        mods: Alt,     chars: "\x1by"          }
+#   - { key: F,        mods: Alt,     chars: "\x1bf"          }
+#   - { key: B,        mods: Alt,     chars: "\x1bb"          }
+#   - { key: L,        mods: Alt,     chars: "\x1bl"          }
+#   - { key: O,        mods: Alt,     chars: "\x1bo"          }
+#   - { key: W,        mods: Alt,     chars: "\x1bw"          }
+#   - { key: D,        mods: Alt,     chars: "\x1bd"          }
+#   - { key: S,        mods: Alt,     chars: "\x1bs"          }
+#   - { key: H,        mods: Alt,     chars: "\x1bh"          }
+#   - { key: P,        mods: Alt,     chars: "\x1bp"          }
+#   - { key: V,        mods: Alt,     chars: "\x1bv"          }
+#   - { key: T,        mods: Alt,     chars: "\x1bt"          }
+#   - { key: U,        mods: Alt,     chars: "\x1bu"          }
+#   - { key: C,        mods: Alt,     chars: "\x1bc"          }
+
+# mouse_bindings:
+#   - { mouse: Middle, action: PasteSelection }
