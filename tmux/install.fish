@@ -2,9 +2,7 @@ if ! command -qs tmux
 	exit
 end
 
-test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+test -d ~/.config/tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
-alias --save ta='tmux new-session -A -s main'
-
-link_file $DOTFILES_ROOT/tmux/tmux.conf $HOME/.tmux.conf
+link_file $DOTFILES_ROOT/tmux/tmux.conf $HOME/.config/tmux/tmux.conf
 	or abort tmux
